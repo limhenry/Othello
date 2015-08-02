@@ -16,17 +16,23 @@ Note: Some personal info are not showing due to personal privacy.
 #include <fstream>
 #include <cstdlib>
 
+void menu();
 void display_board();
 void player_turn();
 bool check_game();
 
 char board[8][8] = {{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}};
 char turn;	
-
 //The amazing main menu
 int main(){
+	system("CLS");
+	menu();
+	return 0;
+}
+
+void menu(){
 	turn = 'X';
-	int select_menu;
+	char select_menu;
 	std::cout<<"#######################################\n";
 	std::cout<<"|              OTHELLO!               |\n";
 	std::cout<<"|                 BY                  |\n";
@@ -35,7 +41,8 @@ int main(){
 	std::cout<<"Welcome to Othello\n\nType a number to select an option\n\n1. New game \n2. Help \n3. Quit\n\n""Selection: ";
 	std::cin>>select_menu;
 
-	if (select_menu == 1){
+	if (select_menu == '1'){
+		system("CLS");
 		std::cin.ignore();
 		while (!check_game())
 		{
@@ -44,8 +51,9 @@ int main(){
 			check_game();
 		}
 	}
-	else if(select_menu == 2){
+	else if(select_menu == '2'){
 		//reading the help from help.txt
+		system("CLS");
 		std::string help_text;
 		std::ifstream help ("help.txt");
 		if (help.is_open())
@@ -59,12 +67,13 @@ int main(){
 		system("pause");
 		main();
 	}
-	else if(select_menu == 3){
+	else if(select_menu == '3'){
 		exit(0);
 	}
 	else{
-		std::cout << "\nYou have choose a incorrect value. Try Again. \n";
-		main();
+		system("CLS");
+		std::cout << "You have choose a incorrect value. Try Again. \n\n";
+		menu();
 	}
 }
 
@@ -118,6 +127,7 @@ void player_turn(){
 		main();
 	}
 	else if (choice == "NEXT"){
+		system("CLS");
 		if (turn == 'X'){
 			turn = 'O';
 		}
@@ -133,11 +143,13 @@ void player_turn(){
 		if (row >= 0 && row <= 7 && column >= 0 & column <= 7){
 			if (turn == 'X' && board[row][column] != 'X' && board[row][column] != 'O')
 			{		
-				board[row][column] = 'X';			
+				board[row][column] = 'X';
+				system("CLS");			
 			}
 			else if(turn == 'O' && board[row][column] != 'X' && board[row][column] != 'O')
 			{
 				board[row][column] = 'O';
+				system("CLS");
 			}    
 			else
 			{
